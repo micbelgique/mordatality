@@ -5,7 +5,12 @@
 
     <hr />
 
-    <%= form_tag estimations_path, { :class => 'form' } do |f| %>
+    <div class="spinner">
+      <%= image_tag 'reaper2.gif' %><br />
+      <span>Computing Death</span>
+    </div>
+
+    <%= form_tag estimations_path, { :class => 'form', :id => 'new_estimation' } do |f| %>
       <div class="form-field">
         <%= label_tag :age, "Quel âge avez-vous ?" %>
         <%= select_tag :age, options_for_select(age_options, params[:age]), :class => 'form-control' %>
@@ -22,7 +27,7 @@
       </div>
 
       <div class="form-field">
-        <%= button_tag 'Estimer mon espérance de vie', :class => 'btn btn-danger' %>
+        <%= button_tag 'Estimer mon espérance de vie', :class => 'btn btn-danger', :id => 'submit_estimation' %>
       </div>
     <% end %>
   </div>

@@ -14,3 +14,16 @@
 //= require jquery_ujs
 //= require bootstrap-sprockets
 //= require_tree .
+
+$('#submit_estimation').click(function(){
+  $('#new_estimation').hide();
+  $('.spinner').show();
+
+  // var initialSeconds = new Date().getTime() / 1000;
+
+  // while(new Date().getTime() / 1000 < initialSeconds + 3) {
+  //   false;
+  // }
+
+  $('#new_estimation').submit();
+});
