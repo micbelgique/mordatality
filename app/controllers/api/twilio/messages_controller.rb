@@ -1,4 +1,8 @@
 class Api::Twilio::MessagesController < ActionController::Base
+  def index
+    render :json => TwilioService.new.messages_list
+  end
+
   def create
     sender = params[:From]
     body   = params[:Body]
