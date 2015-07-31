@@ -1,0 +1,24 @@
+/*
+ *= require_tree .
+ *= require_self
+ */
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "font-awesome";
+
+h1 {
+  text-transform: uppercase;
+}
+
+.motto {
+  display: block;
+  font-size: 13px;
+  margin-top: -8px;
+  padding: 2px 6px 2px 0;
+  font-style: italic;
+}
+
+.form-field {
+  margin-bottom: 20px;
+}

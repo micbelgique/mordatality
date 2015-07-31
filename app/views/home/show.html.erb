@@ -1,13 +1,24 @@
-<h1>Mordatality</h1>
-<h2>Killed by numbers</h2>
+<div class="row">
+  <div class="col-md-offset-4 col-md-4">
+    <h1>Mordatality<sup><small>TM</small></sup></h1>
+    <small class="motto">killed by numbers</small>
 
-<%= form_tag  do |f| %>
-  <%= label_tag :age, "Your age" %>
-  <%= select_tag :age, options_for_select(age_options, params[:age]) %>
-  <br />
-  <%= label_tag :gender, "Your gender" %>
-  <%= select_tag :gender, options_for_select(gender_options, params[:gender]) %>
+    <hr />
 
-  <br /><br />
-  <%= button_tag 'Estimate my life expectancy' %>
-<% end %>
+    <%= form_tag nil, { :class => 'form' } do |f| %>
+      <div class="form-field">
+        <%= label_tag :age, "Quel âge avez-vous ?" %>
+        <%= select_tag :age, options_for_select(age_options, params[:age]), :class => 'form-control' %>
+      </div>
+
+      <div class="form-field">
+        <%= label_tag :gender, "Quel est votre sexe ?" %>
+        <%= select_tag :gender, options_for_select(gender_options, params[:gender]), :class => 'form-control' %>
+      </div>
+
+      <div class="form-field">
+        <%= button_tag 'Estimer ma durée de vie', :class => 'btn btn-danger' %>
+      </div>
+    <% end %>
+  </div>
+</div>

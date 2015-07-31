@@ -1,14 +1,25 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>Mordatality</title>
-  <%= stylesheet_link_tag    'application', media: 'all' %>
-  <%= javascript_include_tag 'application' %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
 
-<%= yield %>
+<html lang="en">
+  <head>
+    <title>Mordatality</title>
 
-</body>
+    <%= stylesheet_link_tag :application %>
+  </head>
+
+  <body role="document">
+    <div class="container" role="main">
+      <% if flash[:error] %>
+        <div class="alert alert-danger"><%= flash[:error] %></div>
+      <% end %>
+
+      <% if flash[:notice] %>
+        <div class="alert alert-success"><%= flash[:notice] %></div>
+      <% end %>
+
+      <%= yield %>
+    </div> <!-- /container -->
+
+    <%= javascript_include_tag :application %>
+  </body>
 </html>
