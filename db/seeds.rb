@@ -1,7 +1,8 @@
 # Provinces
 
 ['Anvers', 'Hainaut', 'Flandre orientale', 'Flandre occidentale', 'Namur',
- 'Liège', 'Limbourg', 'Luxembourg', 'Brabant wallon', 'Brabant flamand'].each do |province|
+ 'Liège', 'Limbourg', 'Luxembourg', 'Brabant wallon', 'Brabant flamand',
+ 'Bruxelles-Capitale'].each do |province|
   Province.create!(:name_fr => province)
 end
 
