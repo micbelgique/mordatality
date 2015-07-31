@@ -22,7 +22,7 @@ end
 
 # Mortality Rate
 
-xlsx = Roo::Excelx.new("data/mortality-tables-gender/TMAR_2011-2013 toutes entités_FR_tcm326-255869.xlsx")
+xlsx = Roo::Excelx.new("data/mortality-tables-gender/TMAR_2011-2013 toutes entités_FR_tcm326-255869.xlsx")
 
 Province.all.each do |province|
   sheet = xlsx.sheet(province.name_fr)
