@@ -14,11 +14,16 @@
 ActiveRecord::Schema.define(version: 20150731150911) do
 
   create_table "cities", force: :cascade do |t|
-    t.string  "name",        limit: 255
+    t.string  "name_fr",     limit: 255
+    t.string  "name_nl",     limit: 255
+    t.integer "type",        limit: 4
     t.integer "zip",         limit: 4
     t.decimal "latitude",                precision: 16, scale: 12
     t.decimal "longitude",               precision: 16, scale: 12
     t.integer "province_id", limit: 4
+    t.decimal "area",                    precision: 4,  scale: 2
+    t.integer "population",  limit: 4
+    t.integer "density",     limit: 4
   end
 
   create_table "mortalities", force: :cascade do |t|
