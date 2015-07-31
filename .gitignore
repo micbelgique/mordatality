@@ -16,3 +16,9 @@
 !/log/.keep
 /tmp
 /config/database.yml
+
+/.vagrant
+/cookbooks
+/Cheffile
+/Cheffile.lock
+/Vagrantfile
