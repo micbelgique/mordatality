@@ -8,6 +8,8 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails'
 gem 'roo'
 
+gem 'twilio-ruby'
+
 group :development do
   gem 'mysql2'
 end
