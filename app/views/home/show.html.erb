@@ -1,2 +1,13 @@
 <h1>Mordatality</h1>
 <h2>Killed by numbers</h2>
+
+<%= form_tag  do |f| %>
+  <%= label_tag :age, "Your age" %>
+  <%= select_tag :age, options_for_select(age_options, params[:age]) %>
+  <br />
+  <%= label_tag :gender, "Your gender" %>
+  <%= select_tag :gender, options_for_select(gender_options, params[:gender]) %>
+
+  <br /><br />
+  <%= button_tag 'Estimate my life expectancy' %>
+<% end %>
