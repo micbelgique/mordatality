@@ -6,6 +6,22 @@
   Province.create!(:name_fr => province)
 end
 
+# Cities
+
+cities = JSON.load(File.new("data/postal-codes/zipcode-belgium.json"))
+
+cities.each do |city|
+  City.create(
+    :name         => city['city'],
+    :zip          => city['zip'],
+    :latitude     => city['lat'],
+    :longitude    => city['lng'],
+    :province_id  => Province.find_by_code(city['zip']).try(:id)
+  )
+end
+
+# Mortality Rate
+
 xlsx = Roo::Excelx.new("data/mortality-tables-gender/TMAR_2011-2013 toutes entités_FR_tcm326-255869.xlsx")
 
 Province.all.each do |province|
@@ -13,7 +29,7 @@ Province.all.each do |province|
 
   { 'M' => 0, 'F' => 6 }.each_pair do |sex, offset|
     (4..109).each do |row_i|
-      Mortality.create({
+      Mortality.create(
         :province_id           => province.id,
         :gender                => sex,
         :age                   => row_i == 4 ? -1 : sheet.cell(row_i, offset + 2),
@@ -23,7 +39,7 @@ Province.all.each do |province|
         :survivors             => sheet.cell(row_i, offset + 6),
         :observed_table_deaths => sheet.cell(row_i, offset + 7),
         :life_expectancy       => sheet.cell(row_i, offset + 8)
-      })
+      )
     end
   end
 end
