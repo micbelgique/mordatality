@@ -5,7 +5,7 @@
 
     <hr />
 
-    <%= form_tag nil, { :class => 'form' } do |f| %>
+    <%= form_tag estimations_path, { :class => 'form' } do |f| %>
       <div class="form-field">
         <%= label_tag :age, "Quel âge avez-vous ?" %>
         <%= select_tag :age, options_for_select(age_options, params[:age]), :class => 'form-control' %>
@@ -17,7 +17,12 @@
       </div>
 
       <div class="form-field">
-        <%= button_tag 'Estimer ma durée de vie', :class => 'btn btn-danger' %>
+        <%= label_tag :city, "De quelle ville êtes-vous ?" %>
+        <%= select_tag :city, grouped_options_for_select(city_options, params[:city]), :class => 'form-control' %>
+      </div>
+
+      <div class="form-field">
+        <%= button_tag 'Estimer mon espérance de vie', :class => 'btn btn-danger' %>
       </div>
     <% end %>
   </div>

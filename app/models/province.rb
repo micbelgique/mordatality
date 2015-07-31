@@ -1,4 +1,7 @@
 class Province < ActiveRecord::Base
+
+  has_many :cities
+
   def self.find_by_code(code)
     code = code.to_i
 

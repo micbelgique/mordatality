@@ -11,4 +11,14 @@ module ApplicationHelper
       ['Je suis une femmme', 'F'],
     ]
   end
+
+  def city_options
+    Province.order(:name_fr).collect do |province|
+      cities = province.cities.order(:name).collect do |city|
+        [ "#{city.zip} — #{city.name}", city.id ]
+      end
+
+      [ province.name_fr, cities ]
+    end
+  end
 end
