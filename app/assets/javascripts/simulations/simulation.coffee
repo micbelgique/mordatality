@@ -3,10 +3,13 @@ class @Simulation
     @width  = width
     @height = height
     @people = []
+    @delay  = 0.1
 
     @initializeRenderer()
-    @refreshStage()
-    @animate()
+    @initializeProbabilities( =>
+      @refreshStage()
+      @animate()
+    )
 
   initializeRenderer: ->
     @renderer = new PIXI.autoDetectRenderer(@width, @height, {
@@ -15,6 +18,13 @@ class @Simulation
     })
 
     $('#simulation')[0].appendChild(@renderer.view)
+
+  initializeProbabilities: (callback) ->
+    # 2 = hainaut
+    $.get('api/simulation/probabilities/2', (data) =>
+      @probabilities = data
+      callback()
+    )
 
   refreshStage: ->
     @stage = new PIXI.Container()
@@ -33,8 +43,12 @@ class @Simulation
     @stage.addChild(@background)
 
   initializePeople: ->
-    for i in [0..99]
-      @people.push(new Person(@stage, 0, i))
+    for i in [0..200]
+      if i%2 == 0
+        sex = if Math.random() < 0.5 then 'M' else 'F'
+        @people.push(new Person(@stage, 0, sex, i))
+      else
+        @people.push(undefined)
 
   # bindScroll: ->
   #   @background.interactive = true
@@ -68,7 +82,6 @@ class @Simulation
 
     for person in @people
       if person
-        person.updateAge()
-        person.updatePosition()
+        person.update()
 
     @renderer.render(@stage)
