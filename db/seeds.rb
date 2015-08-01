@@ -16,7 +16,7 @@ cities.each do |city|
     :zip          => city['zip'],
     :latitude     => city['lat'],
     :longitude    => city['lng'],
-    :province_id  => Province.find_by_code(city['zip']).try(:id)
+    :province_id  => Province.find_by_zip_code(city['zip']).try(:id)
   )
 end
 

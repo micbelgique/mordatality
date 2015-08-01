@@ -16,8 +16,8 @@ module ApplicationHelper
 
   def city_options
     Province.order(:name_fr).collect do |province|
-      cities = province.cities.order(:name).collect do |city|
-        [ "#{city.zip} — #{city.name}", city.id ]
+      cities = province.cities.order(:zip).collect do |city|
+        [ "#{city.zip} — #{city.name_fr}", city.id ]
       end
 
       [ province.name_fr, cities ]
