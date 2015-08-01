@@ -12,8 +12,8 @@
 
     <%= form_tag estimations_path, { :class => 'form', :id => 'new_estimation' } do |f| %>
       <div class="form-field">
-        <%= label_tag :age, "Quel âge avez-vous ?" %>
-        <%= select_tag :age, options_for_select(age_options, params[:age]), :class => 'form-control' %>
+        <%= label_tag :date_of_birth, "Quand êtes-vous né ?" %>
+        <%= date_field_tag :date_of_birth, {}, :class => 'form-control' %>
       </div>
 
       <div class="form-field">

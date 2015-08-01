@@ -4,9 +4,10 @@ class EstimationsController < ApplicationController
 
     city        = City.find(params[:city])
     province_id = Province.find_by_zip_code(city.zip)
+    date_of_birth = Date.parse(params[:date_of_birth], "%Y-%m-%d")
 
     @estimation = EstimationService.new(
-      params[:age   ].to_i,
+      date_of_birth,
       params[:gender],
       province_id
     ).estimate
