@@ -67,7 +67,8 @@ class @Simulation
     requestAnimationFrame(@animate)
 
     for person in @people
-      person.updateAge()
-      person.updatePosition()
+      if person
+        person.updateAge()
+        person.updatePosition()
 
     @renderer.render(@stage)
