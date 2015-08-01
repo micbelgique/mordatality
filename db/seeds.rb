@@ -25,10 +25,25 @@ end
 xlsx  = Roo::Excelx.new("data/postal-codes/communes-de-belgique.xlsx")
 sheet = xlsx.sheet('Communes')
 
+# Update name_nl of cities
 (1..sheet.last_row).each do |row_index|
   if row_index != 1
     if city = City.find_by_name_fr(sheet.cell(row_index, 1))
       city.update_attributes(:name_nl => sheet.cell(row_index, 2))
+    end
+  end
+end
+
+(1..sheet.last_row).each do |row_index|
+  if row_index != 1
+    city_fr = City.find_by_name_fr(sheet.cell(row_index, 1))
+    city_nl = City.find_by_name_nl(sheet.cell(row_index, 1))
+
+    city = city_fr ? city_fr : city_nl
+
+    if city
+      #raise (sheet.cell(row_index, 3) == 'Ville' ? :city : :municipality).to_s
+      #city.update_attributes(:type => sheet.cell(row_index, 3) == 'Ville' ? :city : :municipality)
     end
   end
 end
@@ -48,10 +63,11 @@ Province.all.each do |province|
 
   { 'M' => 0, 'F' => 6 }.each_pair do |sex, offset|
     (4..109).each do |row_index|
+      Rails.logger.info row_index
       Mortality.create(
         :province_id           => province.id,
         :gender                => sex,
-        :age                   => row_index == 4 ? -1 : sheet.cell(row_index, offset + 2),
+        :age                   => row_index == 4 ? -1 : sheet.cell(row_index, 2),
         :sample_population     => sheet.cell(row_index, offset + 3),
         :observed_deaths       => sheet.cell(row_index, offset + 4),
         :death_probability     => sheet.cell(row_index, offset + 5),

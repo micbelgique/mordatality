@@ -1,7 +1,7 @@
 class City < ActiveRecord::Base
   belongs_to :province
 
-  enum :status => [ :city, :municipality ]
+  enum :type => [ :city, :municipality ]
 
   def name
     name_fr
