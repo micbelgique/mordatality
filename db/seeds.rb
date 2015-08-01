@@ -96,3 +96,32 @@ Province.all.each do |province|
     end
   end
 end
+
+# Births
+
+xlsx  = Roo::Excelx.new("data/births/NI_03.07_historique_FR_tcm326-44722.xlsx")
+sheet = xlsx.sheet('2009')
+
+(0..13).each do |age|
+  Birth.create(
+    :age         => age,
+    :probability => 1.0 / sheet.cell(79, 'N').to_f
+  )
+end
+
+(5..76).each do |row_index|
+  age = sheet.cell(row_index, 1)
+  if age.is_a? Float
+    Birth.create(
+      :age         => age,
+      :probability => (sheet.cell(row_index, 'N') + sheet.cell(row_index + 1, 'N')).to_f / sheet.cell(79, 'N').to_f
+    )
+  end
+end
+
+(50..104).each do |age|
+  Birth.create(
+    :age         => age,
+    :probability => 6.0 / sheet.cell(79, 'N').to_f
+  )
+end

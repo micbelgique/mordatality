@@ -11,7 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150731150911) do
+ActiveRecord::Schema.define(version: 20150801113624) do
+
+  create_table "births", force: :cascade do |t|
+    t.integer "age",         limit: 4
+    t.decimal "probability",           precision: 10, scale: 8
+  end
 
   create_table "cities", force: :cascade do |t|
     t.string  "name_fr",     limit: 255
