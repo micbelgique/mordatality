@@ -12,12 +12,46 @@ cities = JSON.load(File.new("data/postal-codes/zipcode-belgium.json"))
 
 cities.each do |city|
   City.create(
-    :name         => city['city'],
+    :name_fr      => city['city'],
     :zip          => city['zip'],
     :latitude     => city['lat'],
     :longitude    => city['lng'],
     :province_id  => Province.find_by_code(city['zip']).try(:id)
   )
+end
+
+# More data to cities
+
+xlsx  = Roo::Excelx.new("data/postal-codes/communes-de-belgique.xlsx")
+sheet = xlsx.sheet('Communes')
+
+# Update name_nl of cities
+(1..sheet.last_row).each do |row_index|
+  if row_index != 1
+    if city = City.find_by_name_fr(sheet.cell(row_index, 1))
+      city.update_attributes(:name_nl => sheet.cell(row_index, 2))
+    end
+  end
+end
+
+(1..sheet.last_row).each do |row_index|
+  if row_index != 1
+    city_fr = City.find_by_name_fr(sheet.cell(row_index, 1))
+    city_nl = City.find_by_name_nl(sheet.cell(row_index, 1))
+
+    city = city_fr ? city_fr : city_nl
+
+    if city
+      #raise (sheet.cell(row_index, 3) == 'Ville' ? :city : :municipality).to_s
+      #city.update_attributes(:type => sheet.cell(row_index, 3) == 'Ville' ? :city : :municipality)
+    end
+  end
+end
+
+City.all.each do |city|
+  if !city.name_nl
+    city.update_attributes(:name_nl => city.name_fr)
+  end
 end
 
 # Mortality Rate
@@ -28,17 +62,18 @@ Province.all.each do |province|
   sheet = xlsx.sheet(province.name_fr)
 
   { 'M' => 0, 'F' => 6 }.each_pair do |sex, offset|
-    (4..109).each do |row_i|
+    (4..109).each do |row_index|
+      Rails.logger.info row_index
       Mortality.create(
         :province_id           => province.id,
         :gender                => sex,
-        :age                   => row_i == 4 ? -1 : sheet.cell(row_i, offset + 2),
-        :sample_population     => sheet.cell(row_i, offset + 3),
-        :observed_deaths       => sheet.cell(row_i, offset + 4),
-        :death_probability     => sheet.cell(row_i, offset + 5),
-        :survivors             => sheet.cell(row_i, offset + 6),
-        :observed_table_deaths => sheet.cell(row_i, offset + 7),
-        :life_expectancy       => sheet.cell(row_i, offset + 8)
+        :age                   => row_index == 4 ? -1 : sheet.cell(row_index, 2),
+        :sample_population     => sheet.cell(row_index, offset + 3),
+        :observed_deaths       => sheet.cell(row_index, offset + 4),
+        :death_probability     => sheet.cell(row_index, offset + 5),
+        :survivors             => sheet.cell(row_index, offset + 6),
+        :observed_table_deaths => sheet.cell(row_index, offset + 7),
+        :life_expectancy       => sheet.cell(row_index, offset + 8)
       )
     end
   end
