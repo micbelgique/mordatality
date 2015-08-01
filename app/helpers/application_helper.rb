@@ -1,6 +1,8 @@
 module ApplicationHelper
   def age_options
-    (0..110).to_a.collect do |age|
+    max_age = Mortality.pluck(:age).max
+
+    (0..max_age).to_a.collect do |age|
       ["#{age} ans", age]
     end
   end
