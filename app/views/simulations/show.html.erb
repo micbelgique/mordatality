@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+
+<% page_id = "#{params[:controller].gsub('/', '-')}-#{params[:action]}" %>
+
+<html lang="en" id="<%= page_id %>">
+  <head>
+    <title>Mordatality</title>
+
+    <%= stylesheet_link_tag :application %>
+  </head>
+
+  <body role="document">
+    <div id="simulation"></div>
+
+    <%= javascript_include_tag :application %>
+  </body>
+</html>
