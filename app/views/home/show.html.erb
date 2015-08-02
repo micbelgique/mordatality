@@ -1,8 +1,10 @@
+<a id="simulation" href="<%= simulation_path %>"><blink>Simulation visuelle</blink></a>
+
 <div class="row">
   <div class="col-md-offset-4 col-md-4">
     <div class="spinner">
       <%= image_tag 'reaper2.gif' %><br />
-      <span>Computing Death</span>
+      <span style="color: #fff">Computing Death</span>
     </div>
 
     <%= form_tag estimations_path, { :class => 'form', :id => 'new_estimation' } do |f| %>

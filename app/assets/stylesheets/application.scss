@@ -48,3 +48,28 @@ table.results {
     font-size: 120%;
   }
 }
+
+@-webkit-keyframes blink {
+    from {
+        opacity: 1.0;
+    }
+    to {
+        opacity: 0.0;
+    }
+}
+blink {
+    -webkit-animation-name: blink;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: cubic-bezier(1.0, 0, 0, 1.0);
+    -webkit-animation-duration: 1s;
+}
+
+#simulation {
+  position: absolute;
+  top: 35px;
+  right: 75px;
+  padding: 10px 30px;
+  background-color: #bf3870;
+  color: #fff;
+  font-size: 15px;
+}
