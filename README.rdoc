@@ -1,6 +1,6 @@
 
 
-== MorDATAlity
+= MorDATAlity
 
 La mort est inévitable... Mais les statistiques sont peut-être en votre faveur. Et si vous pouviez connaître la date de votre mort en fonction de votre âge, de votre sexe et de votre commune (en Belgique)?
 
@@ -9,6 +9,24 @@ Sur la base de données publiques (open data) mises à disposition librement par
 - une application SMS (envoyez "29 H 7000" à un numéro donné et recevez un SMS en réponse) qui vous informe du temps qu'il vous reste à vivre
 - une simulation visuelle d'un échantillon de population qui vieillit, se renouvelle (bébes et migrations) et meurt : https://mordatality.herokuapp.com/simulation
 
-Projet réalisé dans le cadre du SummerCamp organisé les 31 juillet et 1-2 août 2015 par le Microsoft Innovation Center (MIC) de Mons, Belgique.
+Projet réalisé dans le cadre du SummerCamp organisé les 31 juillet et 1-2 août 2015 par le Microsoft Innovation Center (MIC) de Mons, Belgique (https://github.com/micdevcamp/summercamp2015)
 
-Contributeurs : Aurélien Malisart, Michaël Hoste, François Stephany, Didier Toussaint
+== Contributeurs
+- Michaël Hoste (https://github.com/MichaelHoste)
+- Aurélien Malisart (https://github.com/aurels)
+- François Stephany (https://github.com/fstephany)
+- Didier Toussaint (https://github.com/didier-84)
+
+== Technologies utilisées :
+- Ruby 2.2.0
+- Rails 4.2.3
+- Twilio (service SMS)
+- MySQL (BDD développement)
+- PostgreSQL (BDD production)
+- gems ruby (voir Gemfile)
+
+== Sources des données Open Data
+- Data.gov.be : http://data.belgium.be/datasets
+- Codes postaux belges : https://github.com/jief/zipcode-belgium
+- Communes belges par province : https://fr.wikipedia.org/wiki/Liste_des_communes_de_Belgique
+
