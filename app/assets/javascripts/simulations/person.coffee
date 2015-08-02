@@ -3,6 +3,7 @@ class @Person
     @stage            = stage
     @age              = age
     @sex              = sex
+    @dead             = false
     @verticalPosition = verticalPosition
     @simulation       = stage.simulation
     @delay            = @simulation.delay
@@ -16,8 +17,10 @@ class @Person
     @stage.addChild(@circle)
 
   remove: ->
-    @stage.removeChild(@circle)
-    @simulation.people[@verticalPosition] = undefined
+    if !@dead
+      @stage.removeChild(@circle)
+      @simulation.people[@verticalPosition] = undefined
+      @dead = true
 
   update: ->
     previousAge  = @age
@@ -26,7 +29,9 @@ class @Person
     @updateDeath(previousAge, @age)
     @updateBirth(previousAge, @age)
     @updateMigration(previousAge, @age)
-    @updatePosition()
+
+    if !@dead
+      @updatePosition()
 
   updateDeath: (previousAge, age) ->
     if Math.floor(previousAge) != Math.floor(age)
@@ -65,7 +70,7 @@ class @Person
     else
       inserted = false
       while !inserted
-        i = Math.floor(Math.random() * (people.length - 1))
+        i = Math.floor(Math.random() * (people.length))
         if !people[i]
           people[i] = new Person(@stage, 0, sex, i)
           inserted  = true
@@ -73,7 +78,7 @@ class @Person
   addPerson: ->
     people = @simulation.people
     sex    = if Math.random() < 0.5 then 'M' else 'F'
-    age    = Math.floor(Math.random() * 75)
+    age    = Math.floor(Math.random() * 40)
 
     full = true
 
@@ -87,11 +92,12 @@ class @Person
     else
       inserted = false
       while !inserted
-        i = Math.floor(Math.random() * (people.length - 1))
+        i = Math.floor(Math.random() * (people.length))
         if !people[i]
           people[i] = new Person(@stage, age, sex, i)
           inserted  = true
 
   updatePosition: ->
-    @circle.x = @age * @simulation.width / 104.0
-    @circle.y = 46 + @verticalPosition * @simulation.height / 220
+    if @circle
+      @circle.x = @age * @simulation.width / 104.0
+      @circle.y = 46 + @verticalPosition * @simulation.height / 300

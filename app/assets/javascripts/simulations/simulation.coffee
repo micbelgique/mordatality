@@ -1,13 +1,14 @@
 class @Simulation
   constructor: (width, height) ->
-    @width  = width
-    @height = height
-    @people = []
-    @delay  = 0.1
+    @width     = width
+    @height    = height
+    @people    = []
+    @iteration = 0
+    @delay     = 0.1
 
     @initializeRenderer()
     @initializeProbabilities( =>
-      @refreshStage()
+      @initializeStage()
       @animate()
     )
 
@@ -26,13 +27,14 @@ class @Simulation
       callback()
     )
 
-  refreshStage: ->
+  initializeStage: ->
     @stage = new PIXI.Container()
     @initializeBackground()
     @initializeAgeLines()
     @initializeAgeTexts()
+    @initializeDate()
+    @initializeCount()
     @initializePeople()
-    #@bindScroll()
 
   initializeBackground: ->
     @background        = PIXI.Sprite.fromImage('assets/pixel.gif');
@@ -57,46 +59,45 @@ class @Simulation
       ageText.y = 6
       @stage.addChild(ageText)
 
+  initializeDate: ->
+    @date = new PIXI.Text(2010, {font : '22px Arial', fill : 0xffffff, align : 'center'})
+    @date.x = 14
+    @date.y = @height - 34
+    @stage.addChild(@date)
+
+  initializeCount: ->
+    @count = new PIXI.Text(@people.length, {font : '22px Arial', fill : 0xffffff, align : 'right'})
+    @count.x = @width  - 54
+    @count.y = @height - 34
+    @stage.addChild(@count)
+
   initializePeople: ->
     for i in [0..200]
       if i%2 == 0
         sex = if Math.random() < 0.4814814815 then 'M' else 'F'
-        @people.push(new Person(@stage, 0, sex, i))
+        @people.push(new Person(@stage, Math.random() * 100, sex, i))
       else
         @people.push(undefined)
-
-  # bindScroll: ->
-  #   @background.interactive = true
-
-  #   onDown = (mouseData) =>
-  #     @isDown       = true
-  #     @startX       = @x
-  #     @startY       = @y
-  #     @startOffsetX = mouseData.data.global.x
-  #     @startOffsetY = mouseData.data.global.y
-
-  #   onUp = =>
-  #     @isDown = false
-
-  #   onMove = (mouseData) =>
-  #     if @isDown
-  #       @x = @startX + mouseData.data.global.x - @startOffsetX
-  #       @y = @startY + mouseData.data.global.y - @startOffsetY
-
-  #   @background.on('mousedown',       onDown)
-  #   @background.on('touchstart',      onDown)
-  #   @background.on('mouseup',         onUp)
-  #   @background.on('touchend',        onUp)
-  #   #@background.on('mouseupoutside',  onUp)
-  #   #@background.on('touchendoutside', onUp)
-  #   @background.on('mousemove',       onMove)
-  #   @background.on('touchmove',       onMove)
 
   animate: =>
     requestAnimationFrame(@animate)
 
+    @iteration += 1
+
+    # Update date
+    @date.text  = Math.floor(2010 + @iteration * @delay)
+
+    # Update counter
+    count = 0
     for person in @people
       if person
-        person.update()
+        count++
+    @count.text = count# * 10839905 / 100
+
+    # Update people
+    length = @people.length - 1
+    for i in [0..length]
+      if @people[i]
+        @people[i].update()
 
     @renderer.render(@stage)
