@@ -14,6 +14,7 @@ class @Person
     @circle = new PIXI.Graphics()
     @circle.beginFill(color)
     @circle.drawCircle(0, 0, @simulation.height / 150.0)
+    @circle.x = -100
     @stage.addChild(@circle)
 
   remove: ->
