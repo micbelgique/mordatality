@@ -16,9 +16,8 @@ class EstimationService
     }).first
 
     if mortality
-
       hours_before_death = fractional_day_to_hours(mortality.life_expectancy)
-      datetime_of_death = Time.now + hours_before_death.hours
+      datetime_of_death  = Time.now + hours_before_death.hours
 
       return {
         :age               => (self.age + mortality.life_expectancy).to_i,

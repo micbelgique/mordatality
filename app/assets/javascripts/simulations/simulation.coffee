@@ -29,9 +29,10 @@ class @Simulation
   refreshStage: ->
     @stage = new PIXI.Container()
     @initializeBackground()
-    #@bindScroll()
-
+    @initializeAgeLines()
+    @initializeAgeTexts()
     @initializePeople()
+    #@bindScroll()
 
   initializeBackground: ->
     @background        = PIXI.Sprite.fromImage('assets/pixel.gif');
@@ -41,6 +42,20 @@ class @Simulation
     @stage.simulation = @
     @stage.background = @background
     @stage.addChild(@background)
+
+  initializeAgeLines: ->
+    @ageLines = new PIXI.Graphics()
+    @ageLines.beginFill(0xAAAAAA)
+    for i in [1..10]
+      @ageLines.drawRect(@width / 104 * 10 * i, 0, 2, 3000)
+    @stage.addChild(@ageLines)
+
+  initializeAgeTexts: ->
+    for i in [1..10]
+      ageText = new PIXI.Text(i*10, {font : '18px Arial', fill : 0xffffff, align : 'right'})
+      ageText.x = @width / 104 * 10 * i - 26
+      ageText.y = 6
+      @stage.addChild(ageText)
 
   initializePeople: ->
     for i in [0..200]
