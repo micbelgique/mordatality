@@ -78,7 +78,7 @@ class @Person
   addPerson: ->
     people = @simulation.people
     sex    = if Math.random() < 0.5 then 'M' else 'F'
-    age    = Math.floor(Math.random() * 40)
+    age    = Math.floor(Math.random() * 39) # max age of immigrant
 
     full = true
 
@@ -100,4 +100,4 @@ class @Person
   updatePosition: ->
     if @circle
       @circle.x = @age * @simulation.width / 104.0
-      @circle.y = 46 + @verticalPosition * @simulation.height / 300
+      @circle.y = 46 + @verticalPosition * @simulation.height / 3000

@@ -54,8 +54,8 @@ class @Simulation
 
   initializeAgeTexts: ->
     for i in [1..10]
-      ageText = new PIXI.Text(i*10, {font : '18px Arial', fill : 0xffffff, align : 'right'})
-      ageText.x = @width / 104 * 10 * i - 26
+      ageText = new PIXI.Text("#{i*10} ans", {font : '18px Arial', fill : 0xffffff, align : 'left'})
+      ageText.x = @width / 104 * 10 * i - 22
       ageText.y = 6
       @stage.addChild(ageText)
 
@@ -67,17 +67,27 @@ class @Simulation
 
   initializeCount: ->
     @count = new PIXI.Text(@people.length, {font : '22px Arial', fill : 0xffffff, align : 'right'})
-    @count.x = @width  - 54
+    @count.x = @width  - 220
     @count.y = @height - 34
     @stage.addChild(@count)
 
   initializePeople: ->
-    for i in [0..200]
+    for i in [0..2000]
       if i%2 == 0
         sex = if Math.random() < 0.4814814815 then 'M' else 'F'
-        @people.push(new Person(@stage, Math.random() * 100, sex, i))
+        @people.push(new Person(@stage, @randomAge(sex), sex, i))
       else
         @people.push(undefined)
+
+  randomAge: (sex) ->
+    number = Math.random()
+    name = if sex == 'M' then 'male_age_repartition' else 'female_age_repartition'
+
+    for i in [0..103]
+      number = number - @probabilities[name][i]
+      if number < 0
+        return i
+    return 103
 
   animate: =>
     requestAnimationFrame(@animate)
@@ -85,14 +95,14 @@ class @Simulation
     @iteration += 1
 
     # Update date
-    @date.text  = Math.floor(2010 + @iteration * @delay)
+    @date.text  = "Année : #{Math.floor(2010 + @iteration * @delay)}"
 
     # Update counter
     count = 0
     for person in @people
       if person
         count++
-    @count.text = count# * 10839905 / 100
+    @count.text = "Population : #{(count * 10839905.0 / 1000.0 / 1000000.0).toFixed(2)} M"
 
     # Update people
     length = @people.length - 1
