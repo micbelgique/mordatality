@@ -1,23 +1,14 @@
 
 
-dede== README
+== MorDATAlity
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+La mort est inévitable... Mais les statistiques sont peut-être en votre faveur. Et si vous pouviez connaître la date de votre mort en fonction de votre âge, de votre sexe et de votre commune (en Belgique)?
 
-Things you may want to cover:
+Sur la base de données publiques (open data) mises à disposition librement par la Belgique et ses régions, nous avons réalisé :
+- un site web qui calcule votre espérance de vie et estime la date de votre mort : https://mordatality.herokuapp.com
+- une application SMS (envoyez "29 H 7000" à un numéro donné et recevez un SMS en réponse) qui vous informe du temps qu'il vous reste à vivre
+- une simulation visuelle d'un échantillon de population qui vieillit, se renouvelle (bébes et migrations) et meurt : https://mordatality.herokuapp.com/simulation
 
-* Ruby version
-* System dependencies
-* Configuration
-* Database creation
-* Database initialization
-* How to run the test suite
-* Services (job queues, cache servers, search engines, etc.)
-* Deployment instructions
+Projet réalisé dans le cadre du SummerCamp organisé les 31 juillet et 1-2 août 2015 par le Microsoft Innovation Center (MIC) de Mons, Belgique.
 
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+Contributeurs : Aurélien Malisart, Michaël Hoste, François Stephany, Didier Toussaint
