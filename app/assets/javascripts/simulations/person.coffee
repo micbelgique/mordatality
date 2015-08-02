@@ -44,15 +44,22 @@ class @Person
     added  = false
     sex    = if Math.random() < 0.5 then 'M' else 'F'
 
-    for person, i in people
+    full = true
+    for person in people
       if !person
-        people[i] = new Person(@stage, 0, sex, i)
-        added     = true
+        full = false
         break
 
-    if !added
+    if full
       people.push(new Person(@stage, 0, sex, people.length))
+    else
+      inserted = false
+      while !inserted
+        i = Math.floor(Math.random() * (people.length - 1))
+        if !people[i]
+          people[i] = new Person(@stage, 0, sex, i)
+          inserted  = true
 
   updatePosition: ->
-    @circle.x = 20 + @age * @simulation.width / 120.0
-    @circle.y = 20 + @verticalPosition * @simulation.height / 220
+    @circle.x = @age * @simulation.width / 100.0
+    @circle.y = 60 + @verticalPosition * @simulation.height / 220
