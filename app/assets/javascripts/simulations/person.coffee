@@ -61,5 +61,5 @@ class @Person
           inserted  = true
 
   updatePosition: ->
-    @circle.x = @age * @simulation.width / 100.0
-    @circle.y = 60 + @verticalPosition * @simulation.height / 220
+    @circle.x = @age * @simulation.width / 104.0
+    @circle.y = 46 + @verticalPosition * @simulation.height / 220

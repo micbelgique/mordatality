@@ -30,6 +30,7 @@ class @Simulation
     @stage = new PIXI.Container()
     @initializeBackground()
     @initializeAgeLines()
+    @initializeAgeTexts()
     @initializePeople()
     #@bindScroll()
 
@@ -46,8 +47,15 @@ class @Simulation
     @ageLines = new PIXI.Graphics()
     @ageLines.beginFill(0xAAAAAA)
     for i in [1..10]
-      @ageLines.drawRect(@width / 10 * i, 0, 2, 3000)
+      @ageLines.drawRect(@width / 104 * 10 * i, 0, 2, 3000)
     @stage.addChild(@ageLines)
+
+  initializeAgeTexts: ->
+    for i in [1..10]
+      ageText = new PIXI.Text(i*10, {font : '18px Arial', fill : 0xffffff, align : 'right'})
+      ageText.x = @width / 104 * 10 * i - 26
+      ageText.y = 6
+      @stage.addChild(ageText)
 
   initializePeople: ->
     for i in [0..200]
