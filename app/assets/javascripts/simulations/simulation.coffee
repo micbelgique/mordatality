@@ -60,7 +60,7 @@ class @Simulation
   initializePeople: ->
     for i in [0..200]
       if i%2 == 0
-        sex = if Math.random() < 0.5 then 'M' else 'F'
+        sex = if Math.random() < 0.4814814815 then 'M' else 'F'
         @people.push(new Person(@stage, 0, sex, i))
       else
         @people.push(undefined)
