@@ -1,1 +1,23 @@
-<%= @estimation %>
+<div class="row">
+  <div class="col-md-offset-4 col-md-4">
+    <% if @error %>
+      <div class="alert alert-danger">
+        <%= @error %>
+      </div>
+    <% else %>
+      <table class="table results">
+        <tr>
+          <th>Date de votre mort</th>
+          <th>Age</th>
+        </tr>
+
+        <tr>
+          <td><%= @estimation[:datetime_of_death].strftime('%d/%m/%Y %H:%M') %></td>
+          <td><%= @estimation[:age] %></td>
+        </tr>
+      </table>
+    <% end %>
+
+    <a href="<%= root_path %>" class="btn btn-danger">Retour</a>
+  </div>
+</div>

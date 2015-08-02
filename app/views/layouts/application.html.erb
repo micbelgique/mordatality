@@ -11,13 +11,12 @@
 
   <body role="document">
     <div class="container" role="main">
-      <% if flash[:error] %>
-        <div class="alert alert-danger"><%= flash[:error] %></div>
-      <% end %>
 
-      <% if flash[:notice] %>
-        <div class="alert alert-success"><%= flash[:notice] %></div>
-      <% end %>
+      <div class="row">
+        <div class="col-md-offset-4 col-md-4">
+          <a href="<%= root_path %>"><%= image_tag 'logo.jpg', :id => 'logo' %></a>
+        </div>
+      </div>
 
       <%= yield %>
     </div> <!-- /container -->

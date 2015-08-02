@@ -1,30 +1,27 @@
 <div class="row">
   <div class="col-md-offset-4 col-md-4">
-    <h1>Mordatality<sup><small>TM</small></sup></h1>
-    <small class="motto">killed by numbers</small>
-
-    <hr />
-
     <div class="spinner">
       <%= image_tag 'reaper2.gif' %><br />
       <span>Computing Death</span>
     </div>
 
     <%= form_tag estimations_path, { :class => 'form', :id => 'new_estimation' } do |f| %>
-      <div class="form-field">
-        <%= label_tag :date_of_birth, "Quand êtes-vous né ?" %>
-        <%= date_field_tag :date_of_birth, {}, :class => 'form-control' %>
-      </div>
+      <% cache do %>
+        <div class="form-field">
+          <%= label_tag :date_of_birth, "Quand êtes-vous né ?" %>
+          <%= date_field_tag :date_of_birth, {}, :class => 'form-control' %>
+        </div>
 
-      <div class="form-field">
-        <%= label_tag :gender, "Quel est votre sexe ?" %>
-        <%= select_tag :gender, options_for_select(gender_options, params[:gender]), :class => 'form-control' %>
-      </div>
+        <div class="form-field">
+          <%= label_tag :gender, "Quel est votre sexe ?" %>
+          <%= select_tag :gender, options_for_select(gender_options, params[:gender]), :class => 'form-control' %>
+        </div>
 
-      <div class="form-field">
-        <%= label_tag :city, "De quelle ville êtes-vous ?" %>
-        <%= select_tag :city, grouped_options_for_select(city_options, params[:city]), :class => 'form-control' %>
-      </div>
+        <div class="form-field">
+          <%= label_tag :city, "De quelle ville êtes-vous ?" %>
+          <%= select_tag :city, grouped_options_for_select(city_options, params[:city]), :class => 'form-control' %>
+        </div>
+      <% end %>
 
       <div class="form-field">
         <%= button_tag 'Estimer mon espérance de vie', :class => 'btn btn-danger', :id => 'submit_estimation' %>

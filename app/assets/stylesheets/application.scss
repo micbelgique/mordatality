@@ -8,19 +8,20 @@
 @import "font-awesome";
 
 body {
-  background-color: #fafad2;
+  background-color: #1a1414;
+  text-align: center;
+}
+
+#logo {
+  width: 100%;
 }
 
 h1 {
   text-transform: uppercase;
 }
 
-.motto {
-  display: block;
-  font-size: 13px;
-  margin-top: -8px;
-  padding: 2px 6px 2px 0;
-  font-style: italic;
+label {
+  color: #e37a5a;
 }
 
 .form-field {
@@ -30,4 +31,20 @@ h1 {
 .spinner {
   display: none;
   text-align: center;
+}
+
+.btn {
+  background-color: #bf3870;
+}
+
+table.results {
+  background: #00a29b;
+  border-collapse: collapse;
+  border: 0;
+
+  th, td {
+    text-align: center;
+    color: #fff;
+    font-size: 120%;
+  }
 }
