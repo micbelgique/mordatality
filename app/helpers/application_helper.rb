@@ -10,7 +10,7 @@ module ApplicationHelper
   def gender_options
     [
       ['Je suis un homme',   'M'],
-      ['Je suis une femmme', 'F'],
+      ['Je suis une femme', 'F'],
     ]
   end
 
