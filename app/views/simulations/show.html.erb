@@ -32,7 +32,7 @@
             </p>
 
             <p>
-              Présentation ici :
+              Présentation finale du projet : <a target="_blank" href="/presentation-summercamp2015.pdf">presentation-summercamp2015.pdf</a>
             </p>
 
             <h3>Explications</h3>
@@ -43,22 +43,33 @@
                   Chaque point représente environ 11 millions de Belge (1000 points pour toute la population).
                 </li>
                 <li>
-                  Les points sont positionnés à l'origine selon la distributions des ages.
+                  Les points sont positionnés selon la pyramide des âges actuelle (hommes/femmes).
                 </li>
                 <li>
-                  Immigration / Emigration
+                  Les points disparaissent lors d'un décès (probabilités de décès pour homme/femme selon son âge)
                 </li>
                 <li>
-                  Naissances pour femmes
+                  Les points apparaissent à gauche lors d'une naissance (probabilités de donner naissance pour une femme selon son âge)
                 </li>
                 <li>
-                  Espérance de vie
+                  Les points apparaissent et disparaissent selon les migrations (probabilités d'immigration et d'émigration hommes/femmes).
                 </li>
               </ul>
             </p>
           </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <div class="modal-footer" style="text-align:left">
+            <ul>
+              <li>
+                <a href="?modal=0">
+                  Relancer la simulation.
+                </a>
+              </li>
+              <li>
+                <a href="?modal=0&type=no-migration">
+                  Relancer la simulation sans prendre en compte l'immigration et de l'émigration.
+                </a>
+              </li>
+            </ul>
           </div>
         </div>
       </div>

@@ -26,15 +26,15 @@ class ProbabilityService
 
   def self.male_migration_probability
     {
-      :in  => 80_735.to_f / 5_200_000,
-      :out => 53_390.to_f / 5_200_000
+      :in  => 80_735.to_f / 5_312_221,
+      :out => 53_390.to_f / 5_312_221
     }
   end
 
   def self.female_migration_probability
     {
-      :in  => 65_674.to_f / 5_200_000,
-      :out => 37_662.to_f / 5_200_000
+      :in  => 65_674.to_f / 5_527_684,
+      :out => 37_662.to_f / 5_527_684
     }
   end
 

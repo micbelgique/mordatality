@@ -23,13 +23,13 @@ class @Person
       @simulation.people[@verticalPosition] = undefined
       @dead = true
 
-  update: ->
+  update: (type) ->
     previousAge  = @age
     @age        += @delay
 
     @updateDeath(previousAge, @age)
     @updateBirth(previousAge, @age)
-    @updateMigration(previousAge, @age)
+    @updateMigration(previousAge, @age) if type != 'no-migration'
 
     if !@dead
       @updatePosition()

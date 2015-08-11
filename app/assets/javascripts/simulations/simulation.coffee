@@ -1,7 +1,8 @@
 class @Simulation
-  constructor: (width, height) ->
+  constructor: (width, height, type) ->
     @width     = width
     @height    = height
+    @type      = type
     @people    = []
     @iteration = 0
     @delay     = 0.1
@@ -108,6 +109,6 @@ class @Simulation
     length = @people.length - 1
     for i in [0..length]
       if @people[i]
-        @people[i].update()
+        @people[i].update(@type)
 
     @renderer.render(@stage)
