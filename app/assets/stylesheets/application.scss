@@ -89,3 +89,21 @@ blink {
     padding: 0 5px;
   }
 }
+
+
+.date-of-birth {
+  #date_year {
+    width: 100px;
+    display: inline;
+  }
+
+  #date_month {
+    width: 100px;
+    display: inline;
+  }
+
+  #date_day {
+    width: 100px;
+    display: inline;
+  }
+}

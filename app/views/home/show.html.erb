@@ -9,9 +9,10 @@
 
     <%= form_tag estimations_path, { :class => 'form', :id => 'new_estimation' } do |f| %>
       <% cache do %>
-        <div class="form-field">
-          <%= label_tag :date_of_birth, "Quand êtes-vous né ?" %>
-          <%= date_field_tag :date_of_birth, '', { :class => 'form-control' } %>
+        <div class="form-field date-of-birth">
+          <%= label_tag :date_of_birth, "Quand êtes-vous né ?" %><br />
+          <%#= date_field_tag :date_of_birth, '', { :class => 'form-control' } %>
+          <%= select_date Date.today, { :start_year => Date.today.year - 104, :end_year => Date.today.year }, { :class => 'form-control' } %>
         </div>
 
         <div class="form-field">

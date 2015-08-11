@@ -8,6 +8,7 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails'
 gem 'bootstrap-sass'
 gem 'font-awesome-rails'
+gem 'rails-i18n'
 
 gem 'roo'
 gem 'twilio-ruby'

@@ -9,7 +9,7 @@ Bundler.require(*Rails.groups)
 module Mordatality
   class Application < Rails::Application
     config.time_zone                                      = 'Brussels'
-    config.i18n.default_locale                            = :en
+    config.i18n.default_locale                            = :fr
     config.active_record.raise_in_transactional_callbacks = true
   end
 end
