@@ -6,15 +6,63 @@
   <head>
     <title>Mordatality</title>
 
-    <style type="text/css">
-      body {
-        margin: 0;
-      }
-    </style>
+    <%= stylesheet_link_tag :simulation %>
   </head>
 
   <body role="document" style="overflow:hidden">
     <div id="simulation" style="overflow:hidden"></div>
+
+    <button type="button"
+            class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal"
+            style="position:absolute; bottom: 50px; left: 100px;display:none">
+      Le jeu de la vie (le vrai !)<br/>
+      <span style="font-size: 11px;display:block">Que suis-je en train de regarder ?</span>
+    </button>
+
+    <div id="myModal" class="modal fade">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Le jeu de la vie (le vrai !)</h4>
+          </div>
+          <div class="modal-body">
+            <p>
+              Ce petit outil a été développé dans le cadre du <a href="http://www.softlab.be/summercamp">MIC Summer Camp 2015</a>.
+            </p>
+
+            <p>
+              Présentation ici :
+            </p>
+
+            <h3>Explications</h3>
+
+            <p>
+              <ul>
+                <li>
+                  Chaque point représente environ 11 millions de Belge (1000 points pour toute la population).
+                </li>
+                <li>
+                  Les points sont positionnés à l'origine selon la distributions des ages.
+                </li>
+                <li>
+                  Immigration / Emigration
+                </li>
+                <li>
+                  Naissances pour femmes
+                </li>
+                <li>
+                  Espérance de vie
+                </li>
+              </ul>
+            </p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <%= javascript_include_tag :application %>
   </body>

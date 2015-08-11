@@ -1,0 +1,11 @@
+/*
+ *= require_self
+ */
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "font-awesome";
+
+.modal-dialog {
+  margin-top: 8%;
+}
